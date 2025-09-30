@@ -96,6 +96,23 @@
             background: linear-gradient(135deg, var(--glow-color-2), var(--glow-color-3));
         }
 
+        /* Timeline */
+        .timeline { position: relative; max-width: 1200px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 6px; background-color: #27273a; top: 0; bottom: 0; left: 50%; margin-left: -3px; border-radius: 3px; }
+        .timeline-container { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
+        /* Responsive timeline */
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-container.right { left: 0%; }
+            .timeline-container.left::after, .timeline-container.right::after { left: 18px; }
+        }
+        .timeline-container::after { content: ''; position: absolute; width: 25px; height: 25px; right: -12px; background-color: var(--bg-dark); border: 4px solid var(--glow-color-2); top: 15px; border-radius: 50%; z-index: 1; }
+        .timeline-container.right::after { left: -13px; }
+        .timeline-content { padding: 20px 30px; position: relative; border-radius: 6px; }
+
         /* Animation on scroll */
         .animate-on-scroll {
             opacity: 0;
@@ -109,7 +126,8 @@
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
-
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
     </style>
 </head>
 <body>
@@ -122,13 +140,15 @@
             </a>
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#ug-peru" class="text-gray-300 hover:text-white transition">Nosotros</a>
+                <a href="#regiones" class="text-gray-300 hover:text-white transition">Regiones</a>
+                <a href="#historia" class="text-gray-300 hover:text-white transition">Hitos</a>
                 <a href="#cloud-clubs" class="text-gray-300 hover:text-white transition">Cloud Clubs</a>
                 <a href="#leaders" class="text-gray-300 hover:text-white transition">Líderes</a>
                 <a href="#eventos" class="text-gray-300 hover:text-white transition">Eventos</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg></button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2"><a href="#ug-peru" class="block text-gray-300">Nosotros</a><a href="#cloud-clubs" class="block text-gray-300">Cloud Clubs</a><a href="#leaders" class="block text-gray-300">Líderes</a><a href="#eventos" class="block text-gray-300">Eventos</a></div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2"><a href="#ug-peru" class="block text-gray-300">Nosotros</a><a href="#regiones" class="block text-gray-300">Regiones</a><a href="#historia" class="block text-gray-300">Hitos</a><a href="#cloud-clubs" class="block text-gray-300">Cloud Clubs</a><a href="#leaders" class="block text-gray-300">Líderes</a><a href="#eventos" class="block text-gray-300">Eventos</a></div>
     </header>
 
     <main class="container mx-auto px-6 py-12">
@@ -141,9 +161,9 @@
                     <div class="mt-8 flex justify-center lg:justify-start animate-on-scroll delay-200"><a href="https://www.meetup.com/es/awsperu/" target="_blank" class="gradient-btn font-bold py-3 px-8 rounded-full">Únete al Grupo</a></div>
                 </div>
                 <div class="hidden lg:block relative h-96 group">
-                    <img src="https://m.media-amazon.com/images/I/71HxZe8lM3L.jpg" alt="Personas en un workshop de AWS" class="absolute top-0 left-10 w-3/5 rounded-2xl shadow-2xl transform rotate-[-6deg] transition-all duration-300 group-hover:rotate-[-8deg] group-hover:scale-110 z-10 object-cover h-full">
-                    <img src="https://awsugperu.s3.amazonaws.com/2023/12/aws-ug-conf-2023-dia-1-y-2-en-utec-1-scaled.jpg" alt="Networking en un evento de comunidad" class="absolute bottom-0 right-0 w-1/2 rounded-2xl shadow-2xl transform rotate-[4deg] transition-all duration-300 group-hover:rotate-[6deg] group-hover:scale-110 z-20 object-cover h-3/4">
-                    <img src="https://secure.meetupstatic.com/photos/event/2/a/2/d/highres_515250797.jpeg" alt="Ponente dando una charla técnica" class="absolute top-1/2 left-1/2 w-2/5 rounded-2xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 rotate-[2deg] transition-all duration-300 group-hover:rotate-[0deg] group-hover:scale-110 z-30 object-cover h-1/2">
+                    <img src="./images/general-fest.jpg" alt="Personas en una foto del Fest de AWS" class="absolute top-0 left-10 w-3/5 rounded-2xl shadow-2xl transform rotate-[-6deg] transition-all duration-300 group-hover:rotate-[-8deg] group-hover:scale-110 z-10 object-cover h-full">
+                    <img src="./images/woman.jpg" alt="Networking en un evento de comunidad" class="absolute bottom-0 right-0 w-1/2 rounded-2xl shadow-2xl transform rotate-[4deg] transition-all duration-300 group-hover:rotate-[6deg] group-hover:scale-110 z-20 object-cover h-3/4">
+                    <img src="./images/people.jpg" class="absolute top-1/2 left-1/2 w-2/5 rounded-2xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 rotate-[2deg] transition-all duration-300 group-hover:rotate-[0deg] group-hover:scale-110 z-30 object-cover h-1/2">
                 </div>
             </div>
         </section>
@@ -155,12 +175,44 @@
                  <p class="mt-4 text-slate-300 text-lg">El AWS User Group Perú es la comunidad oficial para usuarios de Amazon Web Services en el país. Nuestro lema es: "Aprendamos juntos, construyamos juntos, crezcamos juntos". Organizamos meetups, workshops y eventos de networking para todos los niveles.</p>
                  <div class="mt-6"><a href="https://www.meetup.com/es/awsperu/" target="_blank" class="inline-block bg-slate-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-slate-600 transition-colors">¡Conoce más en Meetup!</a></div>
             </div>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll delay-100">
-                <img src="https://awsugperu.s3.amazonaws.com/2023/12/aws-ug-conf-2023-dia-1-y-2-en-utec-73-scaled.jpg" alt="Foto de la comunidad en un evento" class="rounded-lg shadow-lg aspect-[4/3] object-cover w-full transition-transform hover:scale-105">
-                <img src="https://secure.meetupstatic.com/photos/event/d/c/b/1/highres_515236529.jpeg" alt="Charla técnica en un meetup" class="rounded-lg shadow-lg aspect-[4/3] object-cover w-full transition-transform hover:scale-105">
-                <img src="https://secure.meetupstatic.com/photos/event/d/c/e/a/highres_515236586.jpeg" alt="Asistentes a un evento de AWS UG Perú" class="rounded-lg shadow-lg aspect-[4/3] object-cover w-full transition-transform hover:scale-105">
+        </section>
+
+        <!-- Expansión Regional Section -->
+        <section id="regiones" class="my-20 scroll-mt-20 animate-on-scroll">
+            <div class="text-center max-w-4xl mx-auto">
+                 <h2 class="text-3xl font-bold text-white">Llegando a todo el <span class="gradient-text">Perú</span></h2>
+                 <p class="mt-4 text-slate-300 text-lg">La comunidad crece y se expande. Estamos emocionados de anunciar la formación de nuevos User Groups en diferentes regiones del país, llevando el conocimiento de la nube a más builders.</p>
+            </div>
+            <div class="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-6 text-center animate-on-scroll delay-500"><img src="./images/user-group/aws_trujillo.png" alt="Ciudad de Trujillo" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Trujillo</h4><p class="text-slate-400 mt-2">Comunidad activa.</p></div>
+                <div class="glass-card p-6 text-center animate-on-scroll delay-200"><img src="./images/user-group/aws_huancayo.png" alt="Ciudad de Huancayo" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Huancayo</h4><p class="text-slate-400 mt-2">Comunidad activa.</p></div>
+                <div class="glass-card p-6 text-center animate-on-scroll delay-100"><img src="./images/user-group/aws_ug_aqp.png" alt="Ciudad de Arequipa" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Arequipa</h4><p class="text-slate-400 mt-2">Comunidad activa.</p></div>
+                <div class="glass-card p-6 text-center animate-on-scroll delay-400"><img src="./images/user-group/aws_ug_tacna.png" alt="Ciudad de Tacna" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Tacna</h4><p class="text-slate-400 mt-2">Comunidad activa.</p></div>
+                <div class="glass-card p-6 text-center animate-on-scroll delay-300"><img src="./images/user-group/unknown.png" alt="Ciudad de Cusco" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Cusco</h4><p class="text-slate-400 mt-2">¡Próximamente!</p></div>
+                <div class="glass-card p-6 text-center animate-on-scroll delay-300"><img src="./images/user-group/unknown.png" alt="Ciudad de Ica" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Cusco</h4><p class="text-slate-400 mt-2">¡Próximamente!</p></div>
+                <div class="glass-card p-6 text-center animate-on-scroll delay-500"><img src="./images/user-group/unknown.png" alt="Ciudad de Ayacucho" class="rounded-lg mb-4 w-full h-40 object-contain p-4"><h4 class="text-xl font-semibold text-white">AWS User Group Ayacucho</h4><p class="text-slate-400 mt-2">¡Próximamente!</p></div>
             </div>
         </section>
+
+        <!-- Timeline Section -->
+        <section id="historia" class="my-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-white mb-16">Hitos Recientes de <span class="gradient-text">Impacto</span></h2>
+            <div class="timeline">
+                <div class="timeline-container left animate-on-scroll">
+                    <div class="timeline-content glass-card">
+                        <h3 class="font-bold text-xl text-orange-400">AWSome Women Summit LATAM</h3>
+                        <p class="text-slate-300 mt-2">Como parte del comité organizador, ayudamos a traer a Perú por primera vez el evento más grande de la región para empoderar a mujeres en tecnología, fomentando la diversidad e inclusión en la industria.</p>
+                    </div>
+                </div>
+                 <div class="timeline-container right animate-on-scroll delay-100">
+                    <div class="timeline-content glass-card">
+                        <h3 class="font-bold text-xl text-purple-400">AWS Community Fest</h3>
+                        <p class="text-slate-300 mt-2">Marcamos un hito histórico con un festival de innovación que contó con la visita de <strong>Werner Vogels (CTO de Amazon)</strong>, consolidando a Perú como un hub de la nube en Latinoamérica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Cloud Clubs Section -->
         <section id="cloud-clubs" class="my-20 scroll-mt-20 animate-on-scroll">
@@ -174,52 +226,52 @@
         </section>
 
         <!-- Community Leaders Combined Section -->
-        <section id="leaders" class="my-20 scroll-mt-20 animate-on-scroll">
-            <h2 class="text-3xl font-bold text-center text-white mb-10">Líderes de la <span class="gradient-text">Comunidad</span></h2>
+        <section id="leaders" class="my-20 scroll-mt-20">
+             <h2 class="text-3xl font-bold text-center text-white mb-16">Líderes de la <span class="gradient-text">Comunidad</span></h2>
             
             <!-- AWS Heroes -->
-            <div class="mb-16">
+            <div class="mb-16 animate-on-scroll">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="order-2 md:order-1">
                         <h3 class="text-2xl font-bold text-white mb-6">AWS Heroes</h3>
                         <p class="text-slate-300 mb-8 max-w-3xl">Entusiastas y expertos reconocidos por AWS por su impacto excepcional en la comunidad. Perú tiene el orgullo de contar con varios de ellos.</p>
                     </div>
-                    <div class="relative h-64 md:h-80 order-1 md:order-2 group">
-                        <img src="https://d1.awsstatic.com/builders-library/community/heroes/carlos-cortez.e55c65f2424b33dc4b2f1e63080e461623945938.jpg" alt="Foto de Carlos Cortez, AWS Hero" class="absolute top-0 left-0 w-2/3 rounded-lg shadow-2xl transform -rotate-6 transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 group-hover:z-20 object-cover">
-                        <img src="https://d1.awsstatic.com/builders-library/community/heroes/gerardo-lopez.3021f753549679f22ac585c5dd9b36d15655a006.jpg" alt="Foto de Gerardo López, AWS Hero" class="absolute bottom-0 right-0 w-3/5 rounded-lg shadow-2xl transform rotate-6 transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 group-hover:z-20 object-cover">
-                   </div>
+                    <div class="relative h-80 md:h-96 order-1 md:order-2 group">
+                        <img src="./images/hero/carlos.jpg" alt="Foto de Carlos Cortez, AWS Hero" class="absolute top-0 left-0 w-2/3 rounded-lg shadow-2xl transform -rotate-6 transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 group-hover:z-20 object-cover">
+                        <img src="./images/hero/gerardo.jpg" alt="Foto de Gerardo Castro, AWS Hero" class="absolute bottom-0 right-0 w-3/5 rounded-lg shadow-2xl transform rotate-6 transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 group-hover:z-20 object-cover">
+                    </div>
                 </div>
             </div>
 
             <!-- Golden Jackets -->
-            <div class="mb-16">
+            <div class="mb-16 animate-on-scroll delay-100">
                 <h3 class="text-2xl font-bold text-white mb-2 text-center">Golden Jackets <span class="gradient-text">de Perú</span></h3>
                 <p class="text-slate-300 mb-8 max-w-3xl mx-auto text-center">Reconocimiento especial a líderes por sus contribuciones excepcionales al ecosistema de AWS, otorgado en eventos globales.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="leader-card animate-on-scroll"><div class="content text-center"><img src="https://d1.awsstatic.com/builders-library/community/heroes/carlos-cortez.e55c65f2424b33dc4b2f1e63080e461623945938.jpg" alt="Foto de Carlos Cortez" class="rounded-full mx-auto my-4 w-32 h-32 object-cover"><h4 class="text-xl font-bold text-white">Carlos Cortez</h4><p class="text-purple-400 font-semibold">Community Hero</p></div></div>
-                    <div class="leader-card animate-on-scroll"><div class="content text-center"><img src="https://d1.awsstatic.com/builders-library/community/heroes/carlos-cortez.e55c65f2424b33dc4b2f1e63080e461623945938.jpg" alt="Foto de Carlos Cortez" class="rounded-full mx-auto my-4 w-32 h-32 object-cover"><h4 class="text-xl font-bold text-white">Carlos Cortez</h4><p class="text-purple-400 font-semibold">Community Hero</p></div></div>
-                    <div class="leader-card animate-on-scroll"><div class="content text-center"><img src="https://d1.awsstatic.com/builders-library/community/heroes/carlos-cortez.e55c65f2424b33dc4b2f1e63080e461623945938.jpg" alt="Foto de Carlos Cortez" class="rounded-full mx-auto my-4 w-32 h-32 object-cover"><h4 class="text-xl font-bold text-white">Carlos Cortez</h4><p class="text-purple-400 font-semibold">Community Hero</p></div></div>
+                    <div class="leader-card"><div class="content text-center"><img src="./images/goldens/max.jpg" alt="Foto de Max Zeballos" class="rounded-full mx-auto my-4 w-32 h-32 object-cover"><h4 class="text-xl font-bold text-white">Max Zeballos</h4><p class="text-purple-400 font-semibold">Community Leader</p></div></div>
+                    <div class="leader-card"><div class="content text-center"><img src="./images/goldens/andres.jpg" alt="Foto de Andres Zeballos" class="rounded-full mx-auto my-4 w-32 h-32 object-cover"><h4 class="text-xl font-bold text-white">Andres Zeballos</h4><p class="text-purple-400 font-semibold">Community Leader</p></div></div>
+                    <div class="leader-card"><div class="content text-center"><img src="./images/goldens/cristhian.jpg" alt="Foto de Cristian Becerra" class="rounded-full mx-auto my-4 w-32 h-32 object-cover"><h4 class="text-xl font-bold text-white">Cristian Becerra</h4><p class="text-purple-400 font-semibold">Community Leader</p></div></div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Ambassador Section -->
-        <section id="ambassador" class="my-20 scroll-mt-20 animate-on-scroll">
-            <div class="glass-card p-8">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold text-white mb-2">AWS <span class="gradient-text">Ambassador</span></h2>
-                    <p class="text-slate-300 mb-8 max-w-3xl mx-auto">Profesionales de empresas partner (APN) reconocidos por su profundo conocimiento técnico y su pasión por compartirlo.</p>
-                </div>
-                <div class="leader-card max-w-2xl mx-auto animate-on-scroll">
-                   <div class="content flex flex-col sm:flex-row items-center gap-6">
-                       <img src="https://media.licdn.com/dms/image/D4E03AQG44ad6T20nFA/profile-displayphoto-shrink_800_800/0/1684449836932?e=1732320000&v=beta&t=q4T-02a8Q-iO2X_4gW9bZ7v9yJ6mF2a8W3t2oJ5sC4w" alt="Foto de Claudia Izquierdo, Embajadora AWS" class="w-32 h-32 rounded-full object-cover flex-shrink-0">
-                       <div class="text-center sm:text-left">
-                           <h4 class="text-2xl font-bold text-white">Claudia Izquierdo</h4>
-                           <p class="text-orange-400 font-semibold text-lg">AWS Ambassador</p>
-                           <p class="text-slate-400 mt-2">Senior Solutions Architect en AWS, impulsando la adopción de la nube a través de contenido y charlas técnicas.</p>
+            
+            <!-- Ambassador Section -->
+            <div class="animate-on-scroll delay-200">
+                <div class="glass-card p-8">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-bold text-white mb-2">AWS <span class="gradient-text">Ambassador</span></h2>
+                        <p class="text-slate-300 mb-8 max-w-3xl mx-auto">Profesionales de empresas partner (APN) reconocidos por su profundo conocimiento técnico y su pasión por compartirlo.</p>
+                    </div>
+                    <div class="leader-card max-w-2xl mx-auto">
+                       <div class="content flex flex-col sm:flex-row items-center gap-6">
+                           <img src="./images/hero/claudia.jpg" alt="Foto de María Claudia M, Embajadora AWS" class="w-32 h-32 rounded-full object-cover flex-shrink-0">
+                           <div class="text-center sm:text-left">
+                               <h4 class="text-2xl font-bold text-white">María Claudia M</h4>
+                               <p class="text-orange-400 font-semibold text-lg">AWS Ambassador</p>
+                               <p class="text-slate-400 mt-2">Senior Solutions Architect en AWS, impulsando la adopción de la nube a través de contenido y charlas técnicas.</p>
+                           </div>
                        </div>
                    </div>
-               </div>
+                </div>
             </div>
         </section>
         
@@ -236,7 +288,7 @@
     <!-- Footer -->
     <footer class="border-t border-slate-800 mt-20">
         <div class="container mx-auto px-6 py-8 text-center text-slate-400">
-            <p>&copy; 2024 AWS User Group Perú. Un esfuerzo colaborativo de la comunidad para la comunidad.</p>
+            <p>&copy; 2025 AWS User Group Perú. Un esfuerzo colaborativo de la comunidad para la comunidad.</p>
             <p class="mt-2 text-sm">Este sitio no está afiliado, patrocinado ni respaldado por Amazon Web Services.</p>
         </div>
     </footer>
